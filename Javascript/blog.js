@@ -6,11 +6,13 @@ isShown = false;
 sidebar.style.transition = 'var(--transition)';
 
 openListBtn.addEventListener('click' , function() {
-  if(isShown){
+if(isShown){
     sidebar.style.left = '-300px';
+    openListBtn.innerText = 'Open Blog List';
     isShown = false;
   } else {
     sidebar.style.left = '0';
+    openListBtn.innerText = 'Close Blog List';
     isShown = true;
   }
 });
