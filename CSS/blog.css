@@ -1,0 +1,157 @@
+
+#openlist{
+  box-shadow: var(--shadow-1);
+  padding: 10px;
+  font-family: var(--font-01);
+  color: white;
+  display: none;
+}
+
+
+main{
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 90vh;
+}
+
+.bloglist{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 280px;
+  height: 90vh;
+  background: var(--text-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  gap: 5px;
+  z-index: 1;
+  box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.211);
+}
+
+.bloglist h1{
+  margin: 20px 0;
+  font-family: var(--font-02);
+}
+.bloglist a{
+  padding: 10px;
+  color: inherit;
+  font-family: var(--font-03);
+}
+
+.bloglist a:hover{
+  background: rgba(128, 128, 128, 0.165);
+}
+.bloglist a>h4{
+  font-size: var(--text-medium);
+}
+.bloglist a>p{
+  font-size: var(--text-small);
+}
+
+
+
+.blog-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  right: 0;
+  scroll-behavior: smooth;
+}
+
+.wrapper{
+  padding: 20px 100px 20px 100px;
+}
+
+.blog-card {
+  width: 100%;
+  background-color: var(--background-0);
+  border-radius: var(--radius-02);
+  box-shadow: var(--shadow-1);
+  padding: 20px;
+  margin: 20px;
+}
+
+.blog-title h1 {
+  color: var(--blue);
+  font-size: var(--text-xx-large);
+  margin-bottom: 10px;
+}
+
+.blog-body {
+  color: inherit;
+  font-family: var(--font-02);
+  font-size: var(--text-normal);
+}
+
+.subtitle {
+  color: var(--purple);
+  font-size: var(--text-large);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.para {
+  margin-bottom: 15px;
+}
+
+.list {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.listtitle {
+  color: var(--red);
+}
+
+.listpara {
+  margin-bottom: 10px;
+}
+
+.hidden-content {
+  display: none;
+}
+
+#seemore {
+  background-color: var(--blue);
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--radius-01);
+  padding: 10px 20px;
+  font-family: var(--font-02);
+  font-size: var(--text-normal);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+#seemore:hover {
+  background-color: var(--blue-light-hover);
+}
+
+
+@media screen and (max-width:800px) {
+  .bloglist{
+    left: -300px;
+  }
+
+  .blog-container{
+    width: 100% !important;
+    left: 0 !important;
+  }
+
+  .wrapper{
+    padding: 10px 40px 10px 0;
+  }
+
+  #openlist{
+    display: flex;
+  }
+}

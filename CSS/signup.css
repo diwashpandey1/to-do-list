@@ -1,0 +1,135 @@
+
+
+#title{
+  text-align: center;
+  font-family: var(--font-03);
+  font-size: var(--text-x-large);
+  font-weight: 900;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+
+#header{
+  font-family: var(--font-02);
+  font-size: var(--text-medium);
+}
+.container {
+  width: 100%;
+  min-height: 90vh;
+  max-height: 120vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: start; 
+}
+
+
+
+/* Form container */
+.logIn {
+  width: 40%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.signup{
+  width: 60%;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
+.signForm{
+  display:flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  display: flex;
+  gap: 15px;
+}
+
+.section.sec-5{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Radio buttons */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+
+
+
+/* Button */
+button {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Button hover */
+button:hover {
+  background-color: #0056b3;
+}
+
+
+@media screen and (max-width:800px) {
+  .container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+  } 
+
+  .logIn{
+    width: 100%;
+  }
+
+  .signup{
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+
+@media screen and (max-width:600px) {
+
+  .logIn,
+  .signup {
+    padding: 0;
+  }
+ .section{
+  flex-direction: column;
+ }
+
+ .section.sec-3 div{
+  display: flex;
+  justify-content: space-between;
+ }
+}

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); /* Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); /* Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); /* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); /* Lato */
+
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+
+
+:root{
+  /* Backgrounds  */
+  --background-01: #3580bd; /* light blue background */
+  --background-02: #76e1ff; /* slightly darker blue background */
+  --background-03: #83abfc; /* even darker blue background */
+  --background-04: #00ABE4; /* darkest blue background */
+
+  /* text color  */
+  --text-color: #ffffff; /* dark grey text */
+  --green: #2ecc71; /* green color */
+  --blue: #3498db; /* blue color */
+  --blue-light: #3498dbc9; /* blue color */
+  --blue-light-hover: #5fa8e3; /* lighter blue hover color */
+  --orange: rgb(246, 174, 80);
+  --purple: #9b59b6; /* purple color */
+  --red: #e74c3c; /* red color */
+  --yellow: #f1c40f; /* yellow color */
+  --pink: #e91e63; /* pink color */
+  --gray: rgb(236, 230, 230);
+  --grayesh: #d2d0d0b9;
+  --purplish: rgb(241, 127, 241);
+
+  /* font families */
+  --font-01: Arial, sans-serif; /* fallback font */
+  --font-02: 'Roboto', sans-serif; /* Google font Roboto */
+  --font-03: 'Open Sans', sans-serif; /* Google font Open Sans */
+  --font-04: 'Montserrat', sans-serif; /* Google font Montserrat */
+  --font-05: 'Lato', sans-serif; /* Google font Lato */
+  
+  /* text sizes  */
+  --text-small: .8rem;
+  --text-normal: 1rem;
+  --text-medium: 1.4rem;
+  --text-large: 2rem;
+  --text-x-large: 2.2rem;
+  --text-xx-large: 2.6rem;
+  --text-xxx-large: 2.8rem;
+
+  /* radius  */
+  --radius-01: .3rem;
+  --radius-02: .7rem;
+  --circle: 50%;
+
+  --transition: all .4s ease;
+  --transition-01: all .5s ease;
+
+  /* box shadows */
+  --shadow-1: 0 1px 3px rgba(0,0,0,.2), 0 1px  2px rgba(0,0,0,.1);
+  --shadow-2: 0  3px 6px rgba(0,0,0,.2), 0  9px 18px rgba(0,0,0,.1);
+
+}
+
+
+
+a{
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+
+#none{
+  width: 100%;
+  height: 10vh;
+}
+
+.line-animation{
+  position: relative;
+  padding: 4px 1px;
+}
+
+.line-animation::after{
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: var(--background-02);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  transition: transform .3s ease-in-out;
+}
+
+.line-animation:hover::after{
+  transform: scaleX(1);
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px; /* Mostly for vertical scrollbars */
+  height: 10px; /* Mostly for horizontal scrollbars */
+  display: none;
+}
+::-webkit-scrollbar-thumb { /* Foreground */
+  background: var(--gray);
+  border-radius: var(--radius-02);
+}
+::-webkit-scrollbar-track { /* Background */
+  background: var(--scrollbar-background);
+}

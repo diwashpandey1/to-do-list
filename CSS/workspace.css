@@ -1,0 +1,1347 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
+  position: absolute;
+  top: 0;
+  top: 0;
+  z-index: 999;
+}
+
+.login-wrapper{
+  width: 400px;
+}
+
+.content{
+  box-shadow: 0 0 10px #0000002f;
+  border-radius: 1rem;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.content .box{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.content h1{
+  font-size: /*var(--text-medium),*/ 1.5rem;
+  font-family: var(--font-02);
+  margin-bottom: 30px;
+  color: white;
+}
+
+.content .box div{
+  background: #868686;
+  margin-right: 10px;
+  border-radius: .3rem;
+  padding: 10px;
+}
+
+.content .box div input{
+  border: none;
+  outline: none;
+  background: none;
+  padding: 5px;
+  font-size: 1rem;
+  color: white;
+}
+
+.content .box div input i{
+  color: white;
+}
+
+.content .box button{
+  font-size: 1.7rem;
+  padding: 5px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+#errormsg{
+  font-family: var(--font-02);
+  font-size: 1.4rem;
+  color: red;
+  padding: 30px;
+}
+
+header{
+  width: 100%;
+  height: 8vh;
+  background: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+}
+
+header nav{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+header nav .logo{
+  font-family: var(--font-02);
+  font-size: var(--text-medium);
+  color: var(--text-color);
+}
+
+header nav .search{
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+header nav .search  i{
+  padding: 10px;
+  background: #ffffff;
+  color: var(--blue-light);
+  height: 40px;
+  border-top-left-radius: var(--radius-01);
+  border-bottom-left-radius: var(--radius-01);
+  cursor: pointer;
+}
+
+header nav .search input{
+  padding: 10px;
+  text-align: left;
+  outline: none;
+  background: #fff;
+  width: 400px;
+  height: 40px;
+  min-width: 140px;
+  border-top-right-radius: var(--radius-01);
+  border-bottom-right-radius: var(--radius-01);
+  border: none;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.1), 0 0  10px rgba(0,0,0,.1);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+@media screen and (min-width: 800px) {
+  header nav .search input{
+    width: 400px !important;
+  }
+  
+}
+
+header nav .icons{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+}
+
+header nav .icons i{
+  font-size: var(--text-large);
+  cursor: pointer;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+
+header nav .icons span{
+  width: 40px;
+  height: 40px;
+  background: var(--blue-light);
+  box-shadow: var(--box-shadow-02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: var(--circle);
+}
+header nav .icons span img{
+  width: 80%;
+}
+
+.setting{
+  background: white;
+  position: fixed;
+  width: 280px;
+  height: 92vh;
+  bottom: 0;
+  right: -300px;
+  z-index: 999;
+  box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.117);
+  transition: var(--transition);
+}
+
+.setting .wrapper{
+  padding: 10px;
+}
+
+.setting .setting-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: var(--font-02);
+  padding: 10px;
+  font-size: var(--text-medium);
+}
+
+
+.setting .list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.setting .list a{
+  color: inherit;
+  font-family: var(--font-01);
+  font-size: calc(var(--text-normal) + 4px);
+}
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 1.5em;
+}
+
+
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#on-off {
+  position: absolute;
+  top: .2rem;
+  right: -40px;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: 1px solid #adb5bd;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  border-radius: 20px;
+  left: 0.27em;
+  bottom: 0.19em;
+  background-color: #adb5bd;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #007bff;
+}
+
+input:checked+.slider:before {
+  transform: translateX(1.4em);
+  background-color: #fff;
+}
+
+@media screen and (max-width:800px){
+  header nav .search input{
+    width: 30% !important;
+    display: none;
+  }
+
+  header nav .search i{
+    border-radius: var(--radius-01);
+  }
+}
+
+
+
+main{
+  padding: 1px;
+}
+
+.navigation{
+  background: var(--purple);
+  width:  280px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 8vh;
+  transition: var(--transition);
+}
+
+@media screen and (min-width: 980px) {
+  .navigation{
+    left: 0 !important;
+  }
+}
+
+
+
+
+
+.navigation .lists{
+  height: 300px;
+  display: flex;
+  margin-top: 60px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 3px;
+}
+
+.navigation .lists a{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 40px;
+  cursor: pointer;
+  align-items: center;
+  font-family: var(font--02) !important;
+  font-size: var(--text-medium);
+
+}
+
+
+.navigation .lists a:hover{
+  background: var(--text-color);
+  color: black;
+}
+
+.navigation .lists a i{
+  margin-right: 30px;
+  font-size: calc(var(--font-medium) + 5px) !important;
+}
+
+.navigation .footer{
+  position:absolute;
+  left: 0;
+  bottom: 70px;
+  width: 280px;
+  z-index: 999;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+
+.workspace{
+  height: auto;
+  position: fixed;
+  right: 0;
+  top: 8vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+
+.workspace .tasks{
+  width: 100%;
+  height: 92vh;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.workspace .tasks .nav{
+  width: 100%;
+}
+
+
+.workspace .tasks .nav nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: var(--font-02);
+  width: 100%;
+}
+
+.workspace .tasks .nav nav .left-sec {
+  font-size: var(--text-medium);
+}
+
+.workspace .tasks .nav nav .left-sec i{
+  margin-right: 5px;
+}
+
+.workspace .tasks .nav nav .right-section {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  font-size: var(--text-medium);
+}
+
+.workspace .tasks .nav nav .right-section a{
+  color: black;
+  cursor: pointer;
+}
+.workspace .tasks .nav nav .right-section i{
+  margin-right: 5px;
+}
+
+.workspace .tasks .nav nav .right-section .dropdown {
+  display: none;
+  width: auto;
+  position: absolute;
+  cursor: pointer;
+  top: 100%;
+  left: -10%;
+  background-color: #fff;
+  font-size: var(--text-normal);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#fetchDate{
+  font-size: calc(var(--text-small) + 3px);
+  opacity: .8;
+}
+
+.workspace .tasks .nav nav .right-section:hover .dropdown {
+  display: block;
+}
+
+.workspace .tasks .nav nav .right-section .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.workspace .tasks .nav nav .right-section .dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.workspace .tasks .addtask{
+  width: 90%;
+  height: auto;
+  background: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 30px;
+  border-radius: var(--radius-01);
+  box-shadow: var(--shadow-2);
+}
+
+.workspace .tasks .addtask .wrapper{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.workspace .tasks .addtask .wrapper a{
+  padding: 5px;
+  color: black;
+  font-size: var(--font-medium);
+  font-family: var(--font-03);
+}
+
+.workspace .tasks .addtask .wrapper a i{
+  margin-right: 5px;
+}
+
+
+
+.workspace .tasks .addtask input[type="text"]{
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: var(--font-small);
+  box-shadow: var(--shadow-1);
+}
+
+.workspace .tasks .addtask input[type="date"] {
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  outline: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  font-size: var(--font-small);
+  /* Hide the default appearance of the date input */
+  appearance: none;
+}
+
+/* Style the wrapper around the date input */
+.workspace .tasks .addtask input[type="date"]::-webkit-calendar-picker-indicator {
+
+  width: 20px; 
+  height: 20px; 
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+.workspace .tasks .addtask button {
+  background: var(--blue-light);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: var(--font-medium);
+  cursor: pointer;
+}
+
+.workspace .tasks .addtask button:hover {
+  background-color: var(--blue-light-hover);
+}
+
+.alltasklist {
+  width: 90%;
+  height: inherit;
+  margin: 20px auto;
+  overflow-y: scroll !important;
+  background: var(--text-color);
+  border-radius: var(--radius-01);
+  box-shadow: var(--shadow-2);
+  
+}
+
+.alltasklist .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2% 2%;
+}
+
+
+table {
+  border: 1px solid var(--gray);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#orange {
+  background: var(--orange);
+}
+
+table tr:nth-child(even) {
+  background: var(--purplish);
+}
+
+table tr:nth-child(odd) {
+  background: var(--grayesh);
+  color: #000 !important;
+}
+
+table tr th,
+table tr td {
+  padding: 10px;
+  font-family: var(--font-01);
+  font-size: var(--text-medium);
+  color: white;
+  border: 1px solid white;
+}
+
+table tr td {
+  text-align: center;
+  padding: 5px;
+  color: white;
+  font-family: var(--font-03);
+}
+
+
+table tr td .delete-btn{
+  cursor: pointer;
+  color: white;
+  box-shadow: var(--shadow-2);
+  width: 40px;
+  padding: 10px 0;
+  border-radius: var(--radius-02);
+}
+
+
+.alltasklist .wrapper input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+.alltasklist .wrapper input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.alltasklist .wrapper input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  top: 4px;
+  left: 4px;
+}
+
+.alltasklist .wrapper input[type="checkbox"]:checked::before {
+  content: '\2713';
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  line-height: 1;
+}
+
+
+
+
+.columnname{
+  background: #fff;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: var(--radius-01);
+  margin-top: 30px;
+}
+
+.columnname a{
+  color: black;
+  font-size: var(--text-medium);
+  font-family: var(--font-03);
+}
+
+
+/* today section styling starts here*/
+
+
+.workspace .today{
+  width: 100%;
+  height: 92vh;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.workspace .today .nav{
+  width: 100%;
+}
+
+
+.workspace .today .nav nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: var(--font-02);
+  width: 100%;
+}
+
+.workspace .today .nav nav .left-sec {
+  font-size: var(--text-medium);
+}
+
+.workspace .today .nav nav .left-sec i{
+  margin-right: 5px;
+}
+
+.workspace .today .nav nav .right-section {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  font-size: var(--text-medium);
+}
+
+.workspace .today .nav nav .right-section a{
+  color: black;
+  cursor: pointer;
+}
+.workspace .today .nav nav .right-section i{
+  margin-right: 5px;
+}
+
+.workspace .today .nav nav .right-section .dropdown {
+  display: none;
+  width: auto;
+  position: absolute;
+  cursor: pointer;
+  top: 100%;
+  left: -10%;
+  background-color: #fff;
+  font-size: var(--text-normal);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.workspace .today .nav nav .right-section:hover .dropdown {
+  display: block;
+}
+
+.workspace .today .nav nav .right-section .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.workspace .today .nav nav .right-section .dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.workspace .today .addtask{
+  width: 90%;
+  height: auto;
+  background: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 30px;
+  border-radius: var(--radius-01);
+  box-shadow: var(--shadow-2);
+}
+
+.workspace .today .addtask .wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.workspace .today .addtask .wrapper a{
+  padding: 5px;
+  color: black;
+  font-size: var(--font-medium);
+  font-family: var(--font-03);
+}
+
+.workspace .today .addtask .wrapper a i{
+  margin-right: 5px;
+}
+
+
+
+.workspace .today .addtask input[type="text"]{
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: var(--font-small);
+  box-shadow: var(--shadow-1);
+}
+
+.workspace .today .addtask input[type="date"] {
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  outline: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  font-size: var(--font-small);
+  /* Hide the default appearance of the date input */
+  appearance: none;
+}
+
+/* Style the wrapper around the date input */
+.workspace .today .addtask input[type="date"]::-webkit-calendar-picker-indicator {
+
+  width: 20px; 
+  height: 20px; 
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+.workspace .today .addtask button {
+  background: var(--blue-light);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: var(--font-medium);
+  cursor: pointer;
+}
+
+.workspace .today .addtask button:hover {
+  background-color: var(--blue-light-hover);
+}
+
+.todaytasklist {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.todaytasklist .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.todaytasklist .wrapper input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+.todaytasklist .wrapper input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.todaytasklist .wrapper input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  top: 4px;
+  left: 4px;
+}
+
+.todaytasklist .wrapper input[type="checkbox"]:checked::before {
+  content: '\2713';
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  line-height: 1; 
+}
+
+
+
+
+.columnname{
+  background: #fff;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: var(--radius-01);
+  margin-top: 30px;
+}
+
+.columnname a{
+  color: black;
+  font-size: var(--text-medium);
+  font-family: var(--font-03);
+}
+
+
+/* today section styling ends here*/
+
+/* important section styling starts here*/
+
+
+.workspace .important{
+  width: 100%;
+  height: 92vh;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.workspace .important .nav{
+  width: 100%;
+}
+
+
+.workspace .important .nav nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: var(--font-02);
+  width: 100%;
+}
+
+.workspace .important .nav nav .left-sec {
+  font-size: var(--text-medium);
+}
+
+.workspace .important .nav nav .left-sec i{
+  margin-right: 5px;
+}
+
+.workspace .important .nav nav .right-section {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  font-size: var(--text-medium);
+}
+
+.workspace .important .nav nav .right-section a{
+  color: black;
+  cursor: pointer;
+}
+.workspace .important .nav nav .right-section i{
+  margin-right: 5px;
+}
+
+.workspace .important .nav nav .right-section .dropdown {
+  display: none;
+  width: auto;
+  position: absolute;
+  cursor: pointer;
+  top: 100%;
+  left: -10%;
+  background-color: #fff;
+  font-size: var(--text-normal);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.workspace .important .nav nav .right-section:hover .dropdown {
+  display: block;
+}
+
+.workspace .important .nav nav .right-section .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.workspace .important .nav nav .right-section .dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+
+.importanttasklist {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.importanttasklist .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.importanttasklist .wrapper input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+.importanttasklist .wrapper input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.importanttasklist .wrapper input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  top: 4px;
+  left: 4px;
+}
+
+.importanttasklist .wrapper input[type="checkbox"]:checked::before {
+  content: '\2713';
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  line-height: 1;
+}
+
+
+/* important section styling ends here*/
+
+
+/* complete section styling starts here  */ 
+
+.workspace .complete{
+  width: 100%;
+  height: 92vh;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.workspace .complete .nav{
+  width: 100%;
+}
+
+
+.workspace .complete .nav nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: var(--font-02);
+  width: 100%;
+}
+
+.workspace .complete .nav nav .left-sec {
+  font-size: var(--text-medium);
+}
+
+.workspace .complete .nav nav .left-sec i{
+  margin-right: 5px;
+}
+
+.workspace .complete .nav nav .right-section {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  font-size: var(--text-medium);
+}
+
+.workspace .complete .nav nav .right-section a{
+  color: black;
+  cursor: pointer;
+}
+.workspace .complete .nav nav .right-section i{
+  margin-right: 5px;
+}
+
+.workspace .complete .nav nav .right-section .dropdown {
+  display: none;
+  width: auto;
+  position: absolute;
+  cursor: pointer;
+  top: 100%;
+  left: -10%;
+  background-color: #fff;
+  font-size: var(--text-normal);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.workspace .complete .nav nav .right-section:hover .dropdown {
+  display: block;
+}
+
+.workspace .complete .nav nav .right-section .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.workspace .complete .nav nav .right-section .dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+
+.completetasklist {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.completetasklist .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+ .tex input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+ 
+
+
+/* complete section styling ends here  */ 
+
+
+/* pending section styling starts here  */ 
+
+
+.workspace .pending{
+  width: 100%;
+  height: 92vh;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.workspace .pending .nav{
+  width: 100%;
+}
+
+
+.workspace .pending .nav nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-family: var(--font-02);
+  width: 100%;
+}
+
+.workspace .pending .nav nav .left-sec {
+  font-size: var(--text-medium);
+}
+
+.workspace .pending .nav nav .left-sec i{
+  margin-right: 5px;
+}
+
+.workspace .pending .nav nav .right-section {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  font-size: var(--text-medium);
+}
+
+.workspace .pending .nav nav .right-section a{
+  color: black;
+  cursor: pointer;
+}
+.workspace .pending .nav nav .right-section i{
+  margin-right: 5px;
+}
+
+.workspace .pending .nav nav .right-section .dropdown {
+  display: none;
+  width: auto;
+  position: absolute;
+  cursor: pointer;
+  top: 100%;
+  left: -10%;
+  background-color: #fff;
+  font-size: var(--text-normal);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.workspace .pending .nav nav .right-section:hover .dropdown {
+  display: block;
+}
+
+.workspace .pending .nav nav .right-section .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.workspace .pending .nav nav .right-section .dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+
+.pendingtasklist {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.pendingtasklist .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-card {
+  background: #f2f2f2;
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.text-card p{
+  margin: 5px 0;
+}
+
+.text-card p:nth-child(5){
+  margin-left: 50px;
+  width: 10%;
+
+}
+
+
+
+
+
+.text-card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 5%;
+}
+
+.text-card button:hover {
+  background-color: #0056b3;
+}
+
+.text-card input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+}
+
+ .text-card input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+ .text-card input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  top: 4px;
+  left: 4px;
+}
+
+ .text-card input[type="checkbox"]:checked::before {
+  content: '\2713';
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  line-height: 1;
+}
+
+
+
+
+
+/* pending section styling ends here  */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 980px) {
+  .navigation{
+    z-index: 99;
+    left: -300px;
+    display: block;
+  }
+
+  .workspace{
+    width: 100% !important;
+  }
+
+}
