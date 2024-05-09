@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignUp/LogIn || TO-DO  List</title>
+
+  <!-- css links -->
+  <link rel="stylesheet" href="Css/defualt.css">
+  <link rel="stylesheet" href="Css/signup.css">
+  <link rel="stylesheet" href="Css/navbar-footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h2>TO-DO List</h2>
+      </div>
+      <div id = "slideBar" class="links">
+        <a class="line-animation" href="index.html">Home</a>
+        <a class="line-animation" href="workspace.html">Your Workspace</a>
+        <a class="line-animation" href="blog.html">Blogs</a>
+        <a class="line-animation" href="myintro.html">Who am I?</a>
+      </div>
+      <div class="bar">
+        <div id="line-1"></div>
+        <div id="line-2"></div>
+        <div id="line-3"></div>
+      </div>
+    </nav>
+  </header>
+  <div id="none">
+  </div>
+  <main>
+    <h1 id="title">Login / SignUp</h1>
+    <div class="container">
+    <div class="logIn">
+      <p id="header">Already have an account ? Login  here !</p>
+      <form action="" class="loginForm">
+        <input type="text" id="username" class="required" name="username" placeholder="Username">
+        <input type="password" id="passWord" class="required" name="passWord" placeholder="Password">
+        <button onclick="login()">Login</button>
+      </form>
+    </div>
+    <div class="signup">
+      <p id="header">Don't have an account ? Sign Up Now !</p>
+      <form action="" method="post" class="signForm">
+        <div class="section sec-1">
+          <input type="text" id="fname" class="required" name="fname" placeholder="First Name" required>
+          <input type="text" id="lname" class="required" name="lname" placeholder="Last Name" required>
+        </div>
+        <div class="section sec-2">
+          <input type="email" id="email" class="required" name="email"  placeholder="Email" required>
+          <input type="tel" id="phoneNum" class="required" name="phoneNum"  placeholder="Phone Number" required>
+        </div>
+        <div class="section sec-3">
+          <label for="gender">Gender : &nbsp;</label>
+          <div>
+          <input type="radio" id="male"  name="gender" value="male" required>
+          <label for="male">Male</label>&emsp;
+          <input type="radio" id="female"  name="gender" value="Female" required>  
+          <label for="female">Female</label>&emsp;
+          <input type="radio" id="other"  name="gender" value="Other" required>
+          <label for="other">Other</label>
+        </div>
+        </div>
+        <div class="section sec-4">
+          <input type="date" id="date" class="required"  name="birthday" required>
+          <select name="country" id="country" class="required" value="country">
+            <option value="Country" disabled selected>Select Country</option>
+            <!-- All country list will be fetched form js array  -->
+          </select>
+        </div>
+        <div class="section sec-5">
+          <!-- agreements here  -->
+          <div>
+          <input type="checkbox" id="agree" name="agree" value="Agree" required> 
+          <label for="termscondition">I  agree to the terms and conditions.</label>
+        </div>
+        <div>
+          <input type="checkbox" id="agree" name="agree" value="Agree">
+          <label for="suscription">Subscribe to our newsletter .</label>
+        </div>
+        </div>
+        <button>Sign Up</button>
+      </form>
+    </div>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <p>123 Main Street, City, Country</p>
+          <p>Email: info@example.com</p>
+          <p>Phone: +1234567890</p>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="Javascript/navbar.js"></script>
+  <script src="Javascript/signup.js"></script>
+</body>
+</html>
