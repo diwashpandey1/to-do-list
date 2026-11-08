@@ -1,245 +1,276 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const eye = document.getElementById("eye");
-  const passwordInput = document.getElementById("password");
-  const loginBtn = document.getElementById("loginBtn");
-  const login = document.getElementById("login");
-  const errormsg = document.getElementById("errormsg");
-  const pass = document.getElementById("pass").innerText;
-  let countWrongPassword = 0;
+(() => {
+  const STORAGE_KEY = "daylist.tasks.v1";
+  const taskForm = document.getElementById("task-form");
+  const taskInput = document.getElementById("task-input");
+  const dueDateInput = document.getElementById("due-date-input");
+  const taskList = document.getElementById("task-list");
+  const taskSearch = document.getElementById("task-search");
+  const sortSelect = document.getElementById("sort-tasks");
+  const summary = document.getElementById("task-summary");
+  const message = document.getElementById("storage-message");
+  const title = document.getElementById("workspace-title");
+  const dateLabel = document.getElementById("today-date");
+  const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
 
-  // Function to toggle password visibility
-  eye.addEventListener('click', function() {
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      eye.classList.remove('fa-eye');
-      eye.classList.add('fa-eye-slash');
-    } else {
-      passwordInput.type = 'password';
-      eye.classList.remove('fa-eye-slash');
-      eye.classList.add('fa-eye');
-    }
-  });
+  if (!taskForm || !taskInput || !dueDateInput || !taskList || !taskSearch || !sortSelect || !summary || !message || !title || !dateLabel) {
+    console.error("The workspace could not start because required page elements are missing.");
+    return;
+  }
 
-  // Function to handle login button click
-  function handleLogin() {
-    const password = passwordInput.value;
-    if (password === pass) {
-      login.style.display = 'none';
-    } else if(password != pass) {
-      countWrongPassword++;
-      if (countWrongPassword >= 3) {
-        const timeToWait = 10; // Time to wait in seconds
-        errormsg.innerHTML = `Try again after ${timeToWait} seconds`;
-        loginBtn.disabled = true; // Disable login button
-        
-        // Countdown timer
-        let countdown = timeToWait;
-        const timerInterval = setInterval(() => {
-          countdown--;
-          errormsg.innerHTML = `Try again after ${countdown} seconds`;
-          if (countdown === 0) {
-            clearInterval(timerInterval);
-            errormsg.innerHTML = ''; // Clear error message
-            countWrongPassword = 0; // Reset count
-            loginBtn.disabled = false; // Enable login button
-          }
-        }, 1000); // Update every second
+  const labels = {
+    all: "All tasks",
+    today: "Today",
+    important: "Important",
+    pending: "Pending",
+    completed: "Completed"
+  };
+  let activeFilter = "all";
+  let tasks = loadTasks();
 
-        // Vibrate screen
-        navigator.vibrate([200, 100, 200]); // Vibration pattern: vibrate for 200ms, pause for 100ms, then vibrate for 200ms
-      } else {
-        errormsg.innerHTML = 'Please enter correct password!';
-        // Vibrate screen for wrong password
-        navigator.vibrate(200); // Vibrate for 200ms
+  dateLabel.textContent = new Intl.DateTimeFormat(undefined, {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  }).format(new Date()).toUpperCase();
+
+  function isValidTask(task) {
+    return task !== null
+      && typeof task === "object"
+      && typeof task.id === "string"
+      && typeof task.text === "string"
+      && task.text.trim().length > 0
+      && typeof task.createdAt === "string"
+      && !Number.isNaN(Date.parse(task.createdAt))
+      && (task.dueDate === "" || (typeof task.dueDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(task.dueDate)))
+      && typeof task.completed === "boolean"
+      && typeof task.important === "boolean";
+  }
+
+  function loadTasks() {
+    try {
+      const savedValue = window.localStorage.getItem(STORAGE_KEY);
+      if (savedValue === null) return [];
+      const parsed = JSON.parse(savedValue);
+      if (!Array.isArray(parsed)) {
+        message.hidden = false;
+        message.textContent = "Saved task data was not in the expected format. Your list will start empty.";
+        console.warn("Daylist ignored saved task data because it was not an array.");
+        return [];
       }
+
+      const validTasks = parsed.filter(isValidTask);
+      if (validTasks.length !== parsed.length) {
+        message.hidden = false;
+        message.textContent = "Some saved task data could not be read and was skipped.";
+        console.warn("Daylist skipped one or more invalid saved tasks.");
+      }
+      return validTasks;
+    } catch (error) {
+      message.hidden = false;
+      message.textContent = "Your saved list could not be read. Check your browser storage settings.";
+      console.error("Daylist could not read tasks from local storage.", error);
+      return [];
     }
   }
 
-  // Add event listener for Enter key press on password input field
-  passwordInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-      handleLogin();
+  function saveTasks() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      message.hidden = true;
+      message.textContent = "";
+      return true;
+    } catch (error) {
+      message.hidden = false;
+      message.textContent = "Changes are visible, but could not be saved in this browser.";
+      console.error("Daylist could not save tasks to local storage.", error);
+      return false;
     }
-  });
-
-  // Add event listener for login button click
-  loginBtn.addEventListener('click', handleLogin);
-});
-
-
-
-
-
-const switchbox = document.getElementById('switch')
-const sideBar = document.getElementById('sideBar')
-const check = document.getElementById("check")
-const onOff = document.getElementById("on-off")
-
-switchbox.addEventListener('click', function () {
-if (check.checked) {
-  onOff.innerHTML = 'ON';
-} else {
-  onOff.innerHTML = 'OFF';
-}
-});
-
-const navigation = document.getElementById('navigation');
-
-sideBar.addEventListener('click', function () {
-if (check.checked) {
-  onOff.innerHTML = 'ON';
-  navigation.style.left = "0px";
-} else {
-  onOff.innerHTML = 'OFF';
-  navigation.style.left = "-400px";
-}
-});
-
-const setting = document.getElementById('setting')
-const close = document.getElementById('close')
-const settingSidebar = document.getElementById('settingSidebar')
-
-
-setting.style.cursor = 'Pointer'
-
-if(settingSidebar.style.right = '-300px'){
-  isOpen= true;
-}else{
-  isOpen=false;
-}
-
-setting.addEventListener('click' , function() {
-  if(isOpen){
-    settingSidebar.style.right = '0px';
-    setting.style.transform = 'rotate(360deg)'
-    isOpen = false
-  } else {
-    settingSidebar.style.right = '-300px';
-    setting.style.transform = 'rotate(0deg)'
-    isOpen = true
   }
-})
 
-close.addEventListener('click' , function() {
-    settingSidebar.style.right = '-300px';
-    setting.style.transform = 'rotate(0deg)'
-    isOpen = true
-})
+  function localDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
 
+  function filteredTasks() {
+    const query = taskSearch.value.trim().toLocaleLowerCase();
+    const today = localDateString();
+    const visibleTasks = tasks.filter((task) => {
+      const matchesFilter = activeFilter === "all"
+        || (activeFilter === "today" && task.dueDate === today)
+        || (activeFilter === "important" && task.important)
+        || (activeFilter === "completed" && task.completed)
+        || (activeFilter === "pending" && !task.completed);
+      const searchableText = `${task.text} ${task.dueDate} ${task.createdAt}`.toLocaleLowerCase();
+      return matchesFilter && searchableText.includes(query);
+    });
 
+    return visibleTasks.sort((first, second) => {
+      if (sortSelect.value === "alphabetical") {
+        return first.text.localeCompare(second.text);
+      }
+      if (sortSelect.value === "due") {
+        if (!first.dueDate) return second.dueDate ? 1 : 0;
+        if (!second.dueDate) return -1;
+        return first.dueDate.localeCompare(second.dueDate);
+      }
+      return Date.parse(second.createdAt) - Date.parse(first.createdAt);
+    });
+  }
 
+  function updateCounts() {
+    const countByFilter = {
+      all: tasks.length,
+      today: tasks.filter((task) => task.dueDate === localDateString()).length,
+      important: tasks.filter((task) => task.important).length,
+      completed: tasks.filter((task) => task.completed).length,
+      pending: tasks.filter((task) => !task.completed).length
+    };
 
+    Object.entries(countByFilter).forEach(([filter, count]) => {
+      const countElement = document.querySelector(`[data-count="${filter}"]`);
+      if (countElement) countElement.textContent = String(count);
+    });
+  }
 
-const workSpace = document.getElementById("workSpace");
-const panelWidth = 280;
-const updateWorkspaceWidth = () => {
-  const windowWidth = window.innerWidth;
-  const workSpaceWidth = windowWidth - panelWidth;
-  workSpace.style.width = `${workSpaceWidth}px`;
-};
+  function makeTaskElement(task) {
+    const item = document.createElement("li");
+    item.className = `task-item${task.completed ? " is-complete" : ""}`;
+    item.dataset.taskId = task.id;
 
-// Initial call to set workspace width
-updateWorkspaceWidth();
+    const checkbox = document.createElement("input");
+    checkbox.className = "task-checkbox";
+    checkbox.type = "checkbox";
+    checkbox.checked = task.completed;
+    checkbox.setAttribute("aria-label", `${task.completed ? "Uncomplete" : "Complete"} ${task.text}`);
 
-// Listen for window resize event to update workspace width
-window.addEventListener("resize", updateWorkspaceWidth);
+    const details = document.createElement("div");
+    details.className = "task-details";
+    const taskText = document.createElement("span");
+    taskText.className = "task-text";
+    taskText.textContent = task.text;
+    const metadata = document.createElement("span");
+    metadata.className = "task-metadata";
+    const created = new Date(task.createdAt);
+    const createdLabel = new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(created);
+    metadata.textContent = task.dueDate
+      ? `Added ${createdLabel} · Due ${new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(`${task.dueDate}T00:00:00Z`))}`
+      : `Added ${createdLabel}`;
+    details.append(taskText, metadata);
 
-// Function to format the date as "day, date month"
-function formatDate(date) {
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const monthsOfYear = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+    const actions = document.createElement("div");
+    actions.className = "task-actions";
+    const importantButton = document.createElement("button");
+    importantButton.className = "task-action important-action";
+    importantButton.type = "button";
+    importantButton.dataset.action = "important";
+    importantButton.setAttribute("aria-pressed", String(task.important));
+    importantButton.setAttribute("aria-label", `${task.important ? "Remove from" : "Mark as"} important: ${task.text}`);
+    importantButton.textContent = task.important ? "★" : "☆";
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "task-action delete-action";
+    deleteButton.type = "button";
+    deleteButton.dataset.action = "delete";
+    deleteButton.setAttribute("aria-label", `Delete ${task.text}`);
+    deleteButton.textContent = "×";
+    actions.append(importantButton, deleteButton);
+    item.append(checkbox, details, actions);
+    return item;
+  }
 
-  const dayOfWeek = daysOfWeek[date.getDay()];
-  const dayOfMonth = date.getDate();
-  const month = monthsOfYear[date.getMonth()];
+  function render() {
+    title.textContent = labels[activeFilter];
+    filterButtons.forEach((button) => {
+      const selected = button.dataset.filter === activeFilter;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
 
-  return `${dayOfWeek}, ${dayOfMonth} ${month}`;
-}
+    const visibleTasks = filteredTasks();
+    taskList.replaceChildren();
+    visibleTasks.forEach((task) => taskList.append(makeTaskElement(task)));
 
-// Fetch the current date and display it in the specified format
-const currentDate = new Date();
-const formattedDate = formatDate(currentDate);
-document.getElementById("fetchDate").textContent = formattedDate;
-
-const taskSection = document.getElementById("taskSection");
-const todaySection = document.getElementById("todaySection");
-const importantSection = document.getElementById("importantSection");
-const completeSection = document.getElementById("completeSection");
-const pendingSection = document.getElementById("pendingSection");
-
-const taskBtn = document.getElementById("taskBtn");
-const todayBtn = document.getElementById("todayBtn");
-const importantBtn = document.getElementById("importantBtn");
-const completeBtn = document.getElementById("completeBtn");
-const pendingBtn = document.getElementById("pendingBtn");
-
-// Function to hide all sections except the one passed as an argument
-function hideSections(exceptSection) {
-  const sections = [
-    taskSection,
-    todaySection,
-    importantSection,
-    completeSection,
-    pendingSection,
-  ];
-  sections.forEach((section) => {
-    if (section !== exceptSection) {
-      section.style.display = "none";
+    const noun = visibleTasks.length === 1 ? "task" : "tasks";
+    summary.textContent = `${visibleTasks.length} ${noun}`;
+    if (visibleTasks.length === 0) {
+      const emptyState = document.createElement("li");
+      emptyState.className = "empty-state";
+      const hasSearch = taskSearch.value.trim().length > 0;
+      emptyState.textContent = hasSearch
+        ? "No tasks match your search. Try another word."
+        : tasks.length === 0
+          ? "Your list is clear. Add a task above to get started."
+          : `No ${labels[activeFilter].toLocaleLowerCase()} tasks right now.`;
+      taskList.append(emptyState);
     }
+    updateCounts();
+  }
+
+  taskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const text = taskInput.value.trim();
+    if (!text) {
+      taskInput.setCustomValidity("Enter a task before adding it.");
+      taskInput.reportValidity();
+      taskInput.setCustomValidity("");
+      taskInput.focus();
+      return;
+    }
+
+    tasks.push({
+      id: window.crypto && typeof window.crypto.randomUUID === "function"
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      text,
+      createdAt: new Date().toISOString(),
+      dueDate: dueDateInput.value,
+      completed: false,
+      important: false
+    });
+    taskForm.reset();
+    saveTasks();
+    render();
+    taskInput.focus();
   });
-}
 
-// Event listener for the task button
-taskBtn.addEventListener("click", function () {
-  taskSection.style.display = "flex";
-  hideSections(taskSection);
-});
+  taskList.addEventListener("change", (event) => {
+    if (!(event.target instanceof HTMLInputElement) || !event.target.classList.contains("task-checkbox")) return;
+    const item = event.target.closest("[data-task-id]");
+    const task = tasks.find((candidate) => candidate.id === item?.dataset.taskId);
+    if (!task) return;
+    task.completed = event.target.checked;
+    saveTasks();
+    render();
+  });
 
-// Event listener for the today button
-todayBtn.addEventListener("click", function () {
-  todaySection.style.display = "flex";
-  hideSections(todaySection);
-});
+  taskList.addEventListener("click", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    const actionButton = event.target.closest("button[data-action]");
+    const item = actionButton?.closest("[data-task-id]");
+    const task = tasks.find((candidate) => candidate.id === item?.dataset.taskId);
+    if (!actionButton || !task) return;
 
-// Event listener for the important button
-importantBtn.addEventListener("click", function () {
-  importantSection.style.display = "flex";
-  hideSections(importantSection);
-});
+    if (actionButton.dataset.action === "delete") {
+      tasks = tasks.filter((candidate) => candidate.id !== task.id);
+    } else if (actionButton.dataset.action === "important") {
+      task.important = !task.important;
+    } else {
+      return;
+    }
+    saveTasks();
+    render();
+  });
 
-// Event listener for the complete button
-completeBtn.addEventListener("click", function () {
-  completeSection.style.display = "flex";
-  hideSections(completeSection);
-});
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter in labels ? button.dataset.filter : "all";
+      render();
+    });
+  });
 
-// Event listener for the pending button
-pendingBtn.addEventListener("click", function () {
-  pendingSection.style.display = "flex";
-  hideSections(pendingSection);
-});
-
-// Initially display the task section
-taskSection.style.display = "flex";
-hideSections(taskSection);
+  taskSearch.addEventListener("input", render);
+  sortSelect.addEventListener("change", render);
+  render();
+})();

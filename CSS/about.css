@@ -1,0 +1,50 @@
+.about-page {
+  display: grid;
+  min-height: calc(100vh - 172px);
+  place-items: center;
+  padding: 60px 24px;
+}
+
+.about-card {
+  width: min(680px, 100%);
+  padding: clamp(28px, 7vw, 62px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.about-card h1 {
+  max-width: 540px;
+  margin: 0;
+  font-size: clamp(2.45rem, 6vw, 3.7rem);
+  font-weight: 640;
+  letter-spacing: -0.075em;
+  line-height: 1.06;
+}
+
+.about-card p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.about-card .about-lead {
+  margin-top: 22px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.about-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 30px;
+}
+
+.about-tech span {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  color: #566258;
+  font-size: 0.77rem;
+}

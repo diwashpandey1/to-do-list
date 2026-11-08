@@ -1,381 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Workspace || To-Do List</title>
-
-  <!-- css links  -->
-  <link rel="stylesheet" href="CSS/defualt.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Add, organize, and complete tasks in your Daylist workspace.">
+  <title>Workspace — Daylist</title>
+  <link rel="stylesheet" href="CSS/default.css">
   <link rel="stylesheet" href="CSS/navbar-footer.css">
   <link rel="stylesheet" href="CSS/workspace.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-
-  <div class="login" id="login">
-    <div class="login-wrapper">
-      <div class="content">
-        <h1>Type <span id="pass">Password</span> to Get access</h1>
-        <div class="box">
-          <div>
-          <input type="password" name="accessPassword" id="password">
-          <i class="fas fa fa-eye" id="eye"></i>
-        </div>
-          <button id="loginBtn"><i class="fas fa fa-arrow-right"></i></button>
-        </div>
-        <span id="errormsg"></span>
-      </div>
-    </div>
-  </div>
-  
-  <header>
-    <nav>
-      <div class="logo">
-        <h1">Workspace</h1>
-      </div>
-      <div class="search">
-        <i class="fa fa-search" id="searchIcon"></i>
-        <input id="searchBar" type="search" placeholder="Search tasks.." />
-
-      </div>
-      <div class="icons">
-        <i class="fas fa fa-gear" id="setting"></i>
-
-        <span><img src="Assets/Avtar/avtar-01.png" alt="" class="user-avtar"></span>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">daylist<span>.</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="index.html">Home</a>
+        <a href="workspace.html" aria-current="page">Workspace</a>
+        <a href="blog.html">Notes</a>
+        <a href="myintro.html">About</a>
       </div>
     </nav>
   </header>
-  <div class="setting" id="settingSidebar">
-    <div class="wrapper">
-    <div class="setting-nav">
-      <h2 class="title">Setting</h2>
-      <i class="fas fa fa-x" id="close"></i>
-    </div>
-    <div class="list">
-      <a>Open Side Menu</a>
-      <label class="switch" id="sideBar">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-    <div class="list">
-      <a>Turn on Dark Mode</a>
-      <label class="switch" id="switch">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-    <div class="list">
-      <a>Add new task on top</a>
-      <label class="switch" id="switch">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-    <div class="list">
-      <a>Turn on Notifications</a>
-      <label class="switch" id="switch">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-    <div class="list">
-      <a>Turn on Remainders</a>
-      <label class="switch" id="switch">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-    <div class="list">
-      <a>Email</a>
-      <label class="switch" id="switch">
-        <input type="checkbox" id="check">
-        <span class="slider"></span>
-        <span id="on-off">OFF</span>
-      </label>
-    </div>
-  </div>
-  </div>
-  <main>
-    <section class="navigation" id="navigation">
-      <div class="wrapper">
-        <div class="bar" id="navBar">
-          <div id="line-1"></div>
-          <div id="line-2"></div>
-          <div id="line-3"></div>
+
+  <main class="workspace-shell">
+    <aside class="task-sidebar" aria-label="Task filters">
+      <p class="sidebar-label">YOUR LIST</p>
+      <nav class="filter-list">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">
+          <span><span class="filter-icon" aria-hidden="true">≡</span>All tasks</span><span class="filter-count" data-count="all">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="today" aria-pressed="false">
+          <span><span class="filter-icon" aria-hidden="true">◷</span>Today</span><span class="filter-count" data-count="today">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="important" aria-pressed="false">
+          <span><span class="filter-icon" aria-hidden="true">☆</span>Important</span><span class="filter-count" data-count="important">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="pending" aria-pressed="false">
+          <span><span class="filter-icon" aria-hidden="true">○</span>Pending</span><span class="filter-count" data-count="pending">0</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">
+          <span><span class="filter-icon" aria-hidden="true">✓</span>Completed</span><span class="filter-count" data-count="completed">0</span>
+        </button>
+      </nav>
+      <p class="sidebar-note">Your tasks are saved on this device.</p>
+    </aside>
+
+    <section class="task-panel" aria-labelledby="workspace-title">
+      <div class="workspace-heading">
+        <div>
+          <p class="eyebrow" id="today-date"></p>
+          <h1 id="workspace-title">All tasks</h1>
+          <p class="task-summary" id="task-summary" aria-live="polite"></p>
         </div>
-        <div class="lists">
-
-          <a id="taskBtn">
-            <p><i class="fas fa fa-calendar-days"></i>Tasks</p>
-          </a>
-          <a id="todayBtn">
-            <p><i class="fas fa fa-sun"></i>Today</p>
-          </a>
-          <a id="importantBtn">
-            <p><i class="fas fa fa-star"></i>Important Tasks</p>
-          </a>
-          <a id="completeBtn">
-            <p><i class="fas fa fa-check-circle"></i>Completed Tasks</p>
-          </a>
-          <a id="pendingBtn">
-            <p><i class="fas fa fa-hourglass-half"></i>Pending Tasks</p>
-          </a>
-        </div>
-        <div class="footer">
-          <a href=""><i class="fas fa fa-envelope "></i></a>
-          <a href=""><i class="fas fa fa-calendar-days "></i></a>
-          <a href=""><i class="fas fa fa-users"></i></a>
-        </div>
-    </section>
-
-    <section class="workspace" id="workSpace">
-
-      <!-- Task section starts  -->
-
-      <div class="tasks" id="taskSection">
-        <div class="nav">
-          <nav>
-            <div class="left-sec">
-              <div class="time">
-                <p><i class="fas fa fa-sun"></i> My Day</p>
-                <span id="fetchDate"></span>
-              </div>
-            </div>
-
-            <div class="right-section">
-              <a><i class="fas fa-sort"></i> Sort</a>
-              <div class="dropdown">
-                <a id="DueDateSort"><i class="fas fa-calendar-alt"></i>Due Date</a>
-                <a id="alphabetShot"><i class="fas fa-sort-alpha-up"></i>Alphabetically</a>
-                <a id="creationDateSort"><i class="fas fa-calendar-plus"></i>Creation Date</a>
-              </div>
-              <a><i class="fas fa fa-lightbulb"></i>Suggestion</a>
-            </div>
-          </nav>
-        </div>
-        <div class="addtask">
-          <div class="wrapper">
-            <a> <input id="taskInput" type="text" placeholder="Add a task..."
-                required /></a>
-
-            <a href="">Due Date: <input id="dueDateInput" type="date" /></a>
-            <button id="addTaskBtn">ADD TASK</button>
-          </div>
-        </div>
-        <div class="alltasklist" id="allTaskList">
-          <div class="wrapper" id="taskListWrapper">
-            <table id="taskTable">
-              <tr id="orange">
-                <th>Tick</th>
-                <th>Task</th>
-                <th>Created At</th>
-                <th>Due Date</th>
-                <th>Important</th>
-                <th>Action</th>
-              </tr>
-            </table>
-          </div>
-        </div>
-
+        <label class="sort-control">Sort by
+          <select id="sort-tasks">
+            <option value="created">Creation date</option>
+            <option value="due">Due date</option>
+            <option value="alphabetical">Alphabetically</option>
+          </select>
+        </label>
       </div>
 
-      <!-- tasl section ends -->
+      <form class="task-form" id="task-form">
+        <label class="sr-only" for="task-input">Task name</label>
+        <input id="task-input" name="task" type="text" maxlength="240" placeholder="What needs to get done?" autocomplete="off" required>
+        <label class="due-date-control" for="due-date-input">Due date</label>
+        <input id="due-date-input" name="dueDate" type="date" aria-label="Optional due date">
+        <button class="button button-primary add-button" type="submit">Add task <span aria-hidden="true">+</span></button>
+      </form>
 
-      <!-- today section starts -->
-
-      <div class="today" id="todaySection">
-        <div class="nav">
-          <nav>
-            <div class="left-sec">
-              <div class="time">
-                <p><i class="fas fa fa-sun"></i> Today</p>
-                <span id="fetchDate"></span>
-              </div>
-            </div>
-
-            <div class="right-section">
-              <a><i class="fas fa-sort"></i> Sort</a>
-              <div class="dropdown">
-                <a><i class="fas fa-sort-alpha-up"></i>Alphabetically</a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="columnname">
-          <a>Tick</a>
-          <hr>
-          <a>Tasks</a>
-          <hr>
-          <a>Due Date</a>
-          <hr>
-          <a>Important</a>
-          <hr>
-          <a>Created Date</a>
-          <hr>
-          <a>Action</a>
-        </div>
-        <div class="todaytasklist" id="todayTaskList">
-          <div class="wrapper" id="taskListWrapper">
-            This feature as not arrived yet !
-            <!-- Task cards will be dynamically added here -->
-          </div>
-        </div>
-
+      <div class="task-tools">
+        <label class="search-control">
+          <span aria-hidden="true">⌕</span>
+          <span class="sr-only">Search tasks</span>
+          <input id="task-search" type="search" placeholder="Search your tasks" autocomplete="off">
+        </label>
+        <span class="list-label">YOUR LIST</span>
       </div>
 
-      <!-- todat section ends  -->
-
-      <!-- importnt section starts -->
-
-      <div class="important" id="importantSection">
-        <div class="nav">
-          <nav>
-            <div class="left-sec">
-              <div class="time"> 
-                <p><i class="fas fa fa-star"></i> Important</p>
-              </div>
-            </div>
-
-            <div class="right-section">
-              <a><i class="fas fa-sort"></i> Sort</a>
-              <div class="dropdown">
-                <a><i class="fas fa-calendar-alt"></i>Due Date</a>
-                <a><i class="fas fa-sort-alpha-up"></i>Alphabetically</a>
-                <a><i class="fas fa-calendar-plus"></i>Creation Date</a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="columnname">
-          <a>Tick</a>
-          <hr>
-          <a>Tasks</a>
-          <hr>
-          <a>Due Date</a>
-          <hr>
-          <a>Important</a>
-          <hr>
-          <a>Created Date</a>
-          <hr>
-          <a>Action</a>
-        </div>
-        <div class="importanttasklist" id="importantTaskList">
-          <div class="wrapper" id="taskListWrapper">
-            <!-- Task cards will be dynamically added here -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- importnt section ends -->
-
-
-      <!-- completed section starts  -->
-
-      <div class="complete" id="completeSection">
-        <div class="nav">
-          <nav>
-            <div class="left-sec">
-              <div class="time"> 
-                <p><i class="fas fa fa-check-circle"></i> Complete</p>
-              </div>
-            </div>
-
-            <div class="right-section">
-              <a><i class="fas fa-sort"></i> Sort</a>
-              <div class="dropdown">
-                <a><i class="fas fa-calendar-alt"></i>Due Date</a>
-                <a><i class="fas fa-sort-alpha-up"></i>Alphabetically</a>
-                <a><i class="fas fa-calendar-plus"></i>Creation Date</a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="columnname">
-          <a>Tick</a>
-          <hr>
-          <a>Tasks</a>
-          <hr>
-          <a>Due Date</a>
-          <hr>
-          <a>Important</a>
-          <hr>
-          <a>Created Date</a>
-          <hr>
-          <a>Action</a>
-        </div>
-        <div class="completetasklist" id="importantTaskList">
-          <div class="wrapper" id="taskListWrapper">
-            <!-- Task cards will be dynamically added here -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- completed section ends  -->
-
-      <!-- pending section starts  -->
-
-      <div class="pending" id="pendingSection">
-        <div class="nav">
-          <nav>
-            <div class="left-sec">
-              <div class="time"> 
-                <p><i class="fas fa fa-hourglass-half"></i> Pending</p>
-              </div>
-            </div>
-
-            <div class="right-section">
-              <a><i class="fas fa-sort"></i> Sort</a>
-              <div class="dropdown">
-                <a><i class="fas fa-calendar-alt"></i>Due Date</a>
-                <a><i class="fas fa-sort-alpha-up"></i>Alphabetically</a>
-                <a><i class="fas fa-calendar-plus"></i>Creation Date</a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="columnname">
-          <a>Tick</a>
-          <hr>
-          <a>Tasks</a>
-          <hr>
-          <a>Due Date</a>
-          <hr>
-          <a>Important</a>
-          <hr>
-          <a>Created Date</a>
-          <hr>
-          <a>Action</a>
-        </div>
-        <div class="pendingtasklist" id="pendingTaskList">
-          <div class="wrapper" id="taskListWrapper">
-            <!-- Task cards will be dynamically added here -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- pending section ends  -->
-
-
-
-
-
+      <ul class="task-list" id="task-list" aria-label="Tasks"></ul>
+      <p class="storage-message" id="storage-message" role="status" hidden></p>
     </section>
   </main>
+  <footer class="workspace-footer"><a href="index.html">← Back to Daylist home</a></footer>
+  <script src="Javascript/navbar.js"></script>
   <script src="Javascript/workspace.js"></script>
-  <script src="Javascript/addtask.js"></script>
-  <script src="Javascript/search.js"></script>
 </body>
-
 </html>
